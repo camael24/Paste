@@ -62,7 +62,7 @@ namespace Application\Model {
         public function all()
         {
 
-            $sql = 'SELECT * FROM paste LEFT JOIN user ON paste.refUser = user.idUser';
+            $sql = 'SELECT * FROM paste LEFT JOIN user ON paste.refUser = user.idUser ORDER BY time DESC';
             $all = $this->sql($sql)->fetchAll();
 
             return $all;

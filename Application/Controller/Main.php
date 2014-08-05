@@ -8,7 +8,7 @@ namespace Application\Controller {
     {
         public function IndexAction()
         {
-
+            $this->greut->render();
         }
     }
 }

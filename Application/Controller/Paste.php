@@ -8,11 +8,11 @@ namespace Application\Controller {
     {
         public function indexAction()
         {
-            $model = new \Application\Model\Paste();
 
-            echo '<pre>';
-            var_dump($model->all());
-            echo '</pre>';
+            $model              = new \Application\Model\Paste();
+            $this->data->lines  = $model->all();
+
+            $this->greut->render();
         }
 
         public function newAction()
@@ -64,10 +64,9 @@ namespace Application\Controller {
                 return;
             } else {
 
-                $content = (isset($_POST['content'])) ? $_POST['content'] : '';
-                $title   = (isset($_POST['title'])) ? $_POST['title'] : 'Sample';
+                $content = (isset($_POST['content']) and $_POST['content'] !== '') ? $_POST['content'] : '';
+                $title   = (isset($_POST['title']) and $_POST['title'] !== '') ? $_POST['title'] : 'Sample';
                 $b       = $model->add($id, $content, $title, $user);
-
             }
 
             $this->flash->success('Success', 'Pastie create');

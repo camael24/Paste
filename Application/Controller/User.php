@@ -6,10 +6,14 @@ namespace Application\Controller {
 
     class User extends Kit
     {
-        public function IndexAction()
+        public function indexAction()
         {
 
         }
+
+        public function showAction($user_id)
+        {
+            var_dump($user_id);
+        }
     }
 }
-

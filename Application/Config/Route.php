@@ -2,7 +2,7 @@
 
 /* @var $framework \Sohoa\Framework\Framework */
 
-$this->get('/', array('as' => 'root','to' => 'Paste#Index'));
+$this->get('/', array('as' => 'root','to' => 'Main#Index'));
 $this->post('/', array('as' => 'new_Paste','to' => 'Paste#Create'));
 
 $this->resource('paste');
