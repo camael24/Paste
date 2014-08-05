@@ -4,11 +4,11 @@ namespace Application\Controller {
 
     use Sohoa\Framework\Kit;
 
-    class Main extends Kit
+    class Pastie extends Kit
     {
         public function IndexAction()
         {
-            echo 'PASTE';
+
         }
     }
 }

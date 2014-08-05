@@ -27,9 +27,15 @@ namespace Application\Controller {
         public function DefaultAction(\Exception $err)
         {
             $this->sendErrorHeader(Response::STATUS_INTERNAL_SERVER_ERROR, $err->getMessage());
-            echo 'Error! ' . $err->getMessage();
+            echo 'Error! ' . $err->getMessage().' in '.$err->getFile();
+
         }
 
+        public function PHPAction(\Exception $err)
+        {
+            $this->sendErrorHeader(Response::STATUS_INTERNAL_SERVER_ERROR, $err->getMessage());
+            echo 'Error PHP! ' . $err->getMessage().' in '.$err->getFile();
+        }
         /**
          * When there is no route matching the uri or if there is no controller
          * This controller is called, raising a 404 error
@@ -38,7 +44,7 @@ namespace Application\Controller {
         public function Err404Action(\Exception $err)
         {
             $this->sendErrorHeader(Response::STATUS_NOT_FOUND, $err->getMessage());
-            echo 'Not found! ' . $err->getMessage();
+            echo 'Not found! ' . $err->getMessage().' in '.$err->getFile();
         }
     }
 
