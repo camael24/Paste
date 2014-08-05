@@ -2,11 +2,11 @@
 
 /* @var $framework \Sohoa\Framework\Framework */
 
-$this->get('/', array('as' => 'root','to' => 'Main#Index'));
+$this->get('/', array('as' => 'root','to' => 'Paste#Index'));
+$this->post('/', array('as' => 'new_Paste','to' => 'Paste#Create'));
 
-$this->resource('pastie');
+$this->resource('paste');
 $this->resource('user');
-
 
 $err = $this->getFramework()->getErrorHandler();
 $err->handleErrorsAsException();

@@ -8,8 +8,7 @@ namespace Application\Controller {
     {
         public function IndexAction()
         {
-            echo 'PASTE';
+
         }
     }
 }
-

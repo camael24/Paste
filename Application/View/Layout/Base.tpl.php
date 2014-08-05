@@ -1,0 +1,11 @@
+<html>
+	<head>
+		<title>Paste</title>
+	</head>
+	<body>
+	<?php
+    $this->block('content');
+    $this->endBlock();
+    ?>
+	</body>
+</html>
