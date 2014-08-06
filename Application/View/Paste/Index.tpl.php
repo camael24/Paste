@@ -1,11 +1,10 @@
 <?php
 $this->inherits('hoa://Application/View/Layout/Base.tpl.php');
 $this->block('content');
-$router = $this->getFramework()->getRouter();
+$router = $this->_framework->getRouter();
 echo '<table style="width: 800px">
 <thead>
 	<tr>
-		<th>User</th>
 		<th>Title</th>
 		<th>Length</th>
 		<th>Date</th>
@@ -17,11 +16,9 @@ echo '<table style="width: 800px">
 if (isset($lines)) {
     foreach ($lines as $line) {
         $id     = $line['idPaste'];
-        $thref  = 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $router->unroute('showPaste', array('paste_id' => $id));
-        $tuser  = 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $router->unroute('showUser', array('user_id' => $line['login']));
+        $thref  = 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $router->unroute('show_Paste', array('paste_id' => $id));
 
         echo '<tr>
-			<td><a href="'.$tuser.'">'.$line['login'].'</a></td>
 			<td><a href="'.$thref.'">'.$line['title'].'</a></td>
 			<td>'.strlen($line['paste']).'</td>
             <td>'.date('H:i:s d/m/Y', $line['time']).'</td>

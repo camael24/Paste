@@ -4,9 +4,9 @@
 
 $this->get('/', array('as' => 'root','to' => 'Main#Index'));
 $this->post('/', array('as' => 'new_Paste','to' => 'Paste#Create'));
+$this->any('/(?<paste_id>[^/]+)', array('as' => 'show_Paste','to' => 'Paste#Show'));
 
 $this->resource('paste');
-$this->resource('user');
 
 $err = $this->getFramework()->getErrorHandler();
 $err->handleErrorsAsException();

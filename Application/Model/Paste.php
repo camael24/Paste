@@ -29,7 +29,7 @@ namespace Application\Model {
             return (intval($smt) > 0);
         }
 
-        public function add($id, $content, $title = '', $idUser = 1)
+        public function add($id, $content, $title = '')
         {
             $bool = $this->exists($id);
 
@@ -37,12 +37,11 @@ namespace Application\Model {
                 return false;
             }
 
-            $insert = "INSERT INTO paste VALUES (:id, :title , :user, :time, :content);";
+            $insert = "INSERT INTO paste VALUES (:id, :title , :time, :content);";
 
             $this->sql($insert, array(
                    'id'       => $id,
                    'title'    => $title,
-                   'user'     => $idUser,
                    'time'     => time(),
                    'content'  => $content
             ));
@@ -53,7 +52,7 @@ namespace Application\Model {
 
         public function get($id)
         {
-            $sql = 'SELECT * FROM paste LEFT JOIN user, groupe ON paste.refUser = user.idUser AND groupe.idGroupe = user.groupe WHERE idPaste = :id';
+            $sql = 'SELECT * FROM paste WHERE idPaste = :id';
             $all = $this->sql($sql, array('id' => $id))->fetchAll();
 
             return (isset($all[0])) ? $all[0] : false;
@@ -62,7 +61,7 @@ namespace Application\Model {
         public function all()
         {
 
-            $sql = 'SELECT * FROM paste LEFT JOIN user ON paste.refUser = user.idUser ORDER BY time DESC';
+            $sql = 'SELECT * FROM paste ORDER BY time DESC';
             $all = $this->sql($sql)->fetchAll();
 
             return $all;
