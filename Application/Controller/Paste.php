@@ -23,6 +23,7 @@ namespace Application\Controller {
         public function showAction($paste_id)
         {
             $model = new \Application\Model\Paste();
+            exit($paste_id);
             $data  = $model->get($paste_id);
 
             if ($data === false) {
