@@ -23,7 +23,7 @@ namespace Application\Controller {
         public function showAction($paste_id)
         {
             $model = new \Application\Model\Paste();
-            exit($paste_id);
+
             $data  = $model->get($paste_id);
 
             if ($data === false) {
@@ -66,9 +66,9 @@ namespace Application\Controller {
                 $b       = $model->add($id, $content, $title);
             }
 
-            //$this->flash->success('Success', 'Pastie create');
-            echo 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $this->router->unroute('show_Paste', array('paste_id' => $id));
-            //$this->redirector->redirect('show_Paste', array('paste_id' => $id));
+            $this->flash->success('Success', 'Pastie create');
+            //echo 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $this->router->unroute('show_Paste', array('paste_id' => $id));
+            $this->redirector->redirect('show_Paste', array('paste_id' => $id));
         }
     }
 }
