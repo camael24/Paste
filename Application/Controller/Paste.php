@@ -50,7 +50,7 @@ namespace Application\Controller {
             if ($agent === 'Hoa') {
 
                 $paste = \Hoa\Http\Runtime::getData();
-                $title = 'Hello The World';
+                $title = 'Untitled';
                 $b     = $model->add($id, $paste, $title);
 
                 if ($b === false) {
