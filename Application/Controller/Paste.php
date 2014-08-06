@@ -67,7 +67,6 @@ namespace Application\Controller {
             }
 
             $this->flash->success('Success', 'Pastie create');
-            //echo 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $this->router->unroute('show_Paste', array('paste_id' => $id));
             $this->redirector->redirect('show_Paste', array('paste_id' => $id));
         }
     }

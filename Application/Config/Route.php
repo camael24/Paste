@@ -2,8 +2,9 @@
 
 /* @var $framework \Sohoa\Framework\Framework */
 
-$this->get('/', array('as' => 'root','to' => 'Main#Index'));
+$this->get('/', array('as' => 'root','to' => 'Paste#Index'));
 $this->post('/', array('as' => 'new_Paste','to' => 'Paste#Create'));
+$this->any('/help', array('as' => 'help','to' => 'Main#Help'));
 $this->any('/(?<paste_id>[^/]+)', array('as' => 'show_Paste','to' => 'Paste#Show'));
 
 $this->resource('paste');

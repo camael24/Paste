@@ -10,5 +10,9 @@ namespace Application\Controller {
         {
             $this->greut->render();
         }
+        public function HelpAction()
+        {
+            $this->greut->render();
+        }
     }
 }
