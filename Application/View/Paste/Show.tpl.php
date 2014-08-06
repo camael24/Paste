@@ -6,5 +6,5 @@ echo '<p>Title: '.$title.'</p>';
 echo '<p>ID : '.$id.'</p>';
 echo '<p>Url : http://' . \Hoa\Http\Runtime::getHeader('Host') . $router->unroute('show_Paste', array('paste_id' => $id)).'</p>';
 echo '<p>Date : '.date('d/m/Y H:i:s', $time).'</p>';
-echo '<pre>'.htmlentities($content).'</pre>';
+echo '<code class="language-php">'.htmlentities($content).'</code>';
 $this->endBlock();
