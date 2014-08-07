@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>A set of PHP libraries – Hoa</title>
+		<title>Hoa paste <?php echo (isset($title)) ? ' | ' . $title : ''; ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta http-equiv="content-type" content="text/javascript; charset=utf-8" />
 		<meta http-equiv="content-type" content="text/css; charset=utf-8" />

@@ -8,7 +8,6 @@ namespace Application\Controller {
     {
         public function indexAction()
         {
-
             $model              = new \Application\Model\Paste();
             $this->data->lines  = $model->all();
 
@@ -23,7 +22,6 @@ namespace Application\Controller {
         public function showAction($paste_id)
         {
             $model = new \Application\Model\Paste();
-
             $data  = $model->get($paste_id);
 
             if ($data === false) {
@@ -34,7 +32,6 @@ namespace Application\Controller {
             $this->data->title     = $data['title'];
             $this->data->content   = $data['paste'];
             $this->data->time      = $data['time'];
-
 
             $this->greut->render();
 
@@ -50,7 +47,9 @@ namespace Application\Controller {
             if ($agent === 'Hoa') {
 
                 $paste = \Hoa\Http\Runtime::getData();
-                $title = 'Untitled';
+                $query = $this->router->getQuery();
+                $title = isset($query['title']) ? $query['title'] : 'Untitled';
+                //$title = 'Untitled';
                 $b     = $model->add($id, $paste, $title);
 
                 if ($b === false) {
@@ -66,8 +65,8 @@ namespace Application\Controller {
                 $b       = $model->add($id, $content, $title);
             }
 
-            $this->flash->success('Success', 'Pastie create');
-            $this->redirector->redirect('show_Paste', array('paste_id' => $id));
+            //$this->flash->success('Success', 'Pastie create');
+            //$this->redirector->redirect('show_Paste', array('paste_id' => $id));
         }
     }
 }
