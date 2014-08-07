@@ -19,3 +19,5 @@ install:
 	$(COMPOSER) install
 	make db
 
+update:
+	git pull
