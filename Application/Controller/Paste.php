@@ -65,8 +65,8 @@ namespace Application\Controller {
                 $b       = $model->add($id, $content, $title);
             }
 
-            //$this->flash->success('Success', 'Pastie create');
-            //$this->redirector->redirect('show_Paste', array('paste_id' => $id));
+            $this->flash->success('Success', 'Pastie create');
+            $this->redirector->redirect('show_Paste', array('paste_id' => $id));
         }
     }
 }
