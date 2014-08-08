@@ -49,7 +49,6 @@ namespace Application\Controller {
                 $paste = \Hoa\Http\Runtime::getData();
                 $query = $this->router->getQuery();
                 $title = isset($query['title']) ? $query['title'] : 'Untitled';
-                //$title = 'Untitled';
                 $b     = $model->add($id, $paste, $title);
 
                 if ($b === false) {
@@ -58,14 +57,21 @@ namespace Application\Controller {
                 echo 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $this->router->unroute('show_Paste', array('paste_id' => $id));
 
                 return;
-            } else {
-
-                $content = (isset($_POST['content']) and $_POST['content'] !== '') ? $_POST['content'] : '';
-                $title   = (isset($_POST['title']) and $_POST['title'] !== '') ? $_POST['title'] : 'Sample';
-                $b       = $model->add($id, $content, $title);
             }
 
-            $this->flash->success('Success', 'Pastie create');
+            $content = (isset($_POST['content']) and $_POST['content'] !== '') ? $_POST['content'] : '';
+            $title   = (isset($_POST['title']) and $_POST['title'] !== '') ? $_POST['title'] : 'Sample';
+            $content = trim($content);
+
+            if($content === '') {
+                $this->data->content_error = true;
+                $this->data->title         = $title;
+
+                $this->greut->render('hoa://Application/View/Paste/New.tpl.php');
+                return ;
+            }
+
+            $model->add($id, $content, $title);
             $this->redirector->redirect('show_Paste', array('paste_id' => $id));
         }
     }

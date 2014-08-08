@@ -9,6 +9,10 @@
 
 		<link type="text/css" href="http://static.hoa-project.net/Css/Core.css" rel="stylesheet" />
 		<link type="text/css" href="http://static.hoa-project.net/Css/UI.css" rel="stylesheet" />
+		<?php
+			$this->block('style');
+			$this->endBlock();
+		?>
 	</head>
 	<body>
 
