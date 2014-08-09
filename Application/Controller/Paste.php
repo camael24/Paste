@@ -39,40 +39,43 @@ namespace Application\Controller {
 
         public function createAction()
         {
-
-            $agent = \Hoa\Http\Runtime::getHeader('User-Agent');
-            $id    = sha1(time() . rand(0, 50));
-            $model = new \Application\Model\Paste();
+            $agent      = \Hoa\Http\Runtime::getHeader('User-Agent');
+            $id         = sha1(time() . rand(0, 50));
+            $content    = (isset($_POST['content']) and $_POST['content'] !== '') ? $_POST['content'] : '';
+            $content    = trim($content);
+            $title      = (isset($_POST['title']) and $_POST['title'] !== '') ? $_POST['title'] : 'Sample';
+            $model      = new \Application\Model\Paste();
+            $error      = ($content === '');
+            $b          = $model->add($id, $content, $title);    
 
             if ($agent === 'Hoa') {
-
-                $paste = \Hoa\Http\Runtime::getData();
-                $query = $this->router->getQuery();
-                $title = isset($query['title']) ? $query['title'] : 'Untitled';
-                $b     = $model->add($id, $paste, $title);
-
-                if ($b === false) {
-                    echo 'Ever exists! ';
-                }
-                echo 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $this->router->unroute('show_Paste', array('paste_id' => $id));
-
-                return;
+                return $this->cliAgent($id, $error, $title);
             }
+            else {
+                return $this->webAgent($id, $error, $title);
+            } 
+        }
 
-            $content = (isset($_POST['content']) and $_POST['content'] !== '') ? $_POST['content'] : '';
-            $title   = (isset($_POST['title']) and $_POST['title'] !== '') ? $_POST['title'] : 'Sample';
-            $content = trim($content);
+        protected function cliAgent($id, $error, $title = '') {
 
-            if($content === '') {
+            if($error === true) {
+                echo 'Ever exists! ';
+            }
+            echo 'http://' . \Hoa\Http\Runtime::getHeader('Host') . $this->router->unroute('show_Paste', array('paste_id' => $id));
+
+        }      
+
+        protected function webAgent($id, $error, $title = '') {
+
+            if($error === true) {
                 $this->data->content_error = true;
                 $this->data->title         = $title;
 
                 $this->greut->render('hoa://Application/View/Paste/New.tpl.php');
-                return ;
+                return;
             }
-
-            $model->add($id, $content, $title);
             $this->redirector->redirect('show_Paste', array('paste_id' => $id));
+
         }
     }
 }
